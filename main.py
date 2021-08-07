@@ -66,8 +66,6 @@ class Bird(pygame.sprite.Sprite):
         if self.rotation > -90 and self.started:
             self.rotation -= 1
 
-        # pygame.draw.rect(win, (255,0,0), self.rect,1 )
-
     def isAlive(self, fg, pipe1, pipe2):
         pipe_hit1 = self.rect.colliderect(pipe1.rect)
         pipe_hit2 = self.rect.colliderect(fg.hitbox)
@@ -76,7 +74,6 @@ class Bird(pygame.sprite.Sprite):
             hit_sound.play() 
             return False
         return True
-
 
     def jump(self):
         self.vertSpeed = self.jumpSpeed
@@ -102,11 +99,9 @@ class Pipe():
 
     def draw(self):
         win.blit(self.image, self.rect)
-        # pygame.draw.rect(win, (255,0,0), self.rect,1 )
 
     def update(self):
         self.rect.x -= 2
-
 
 class FG(pygame.sprite.Sprite):
     def __init__(self):
@@ -166,7 +161,6 @@ def show_score(scr):
     for num, number in enumerate(nums):
         win.blit(num_imgs[int(number)], ((WIDTH / 2) + num * 17 - 10, 50))
 
-
 bird = choose_bird()
 bg =  choose_bg()
 fg = FG()
@@ -175,8 +169,6 @@ other = pygame.sprite.Group()
 other.add(bg)
 other.add(wc)
 clock = pygame.time.Clock()
-
-    
 
 pipe1, pipe2 = get_pipes()
 score = 0
@@ -203,7 +195,6 @@ while running:
     bird.draw()
     bird.update()
 
-
     if bird.started:
         pipe1.draw()
         pipe1.update()
@@ -216,7 +207,6 @@ while running:
     if bird.rect.x == pipe1.rect.x + 1:
         point_sound.play()
         score += 1
-        
 
     fg.draw()
     fg.update()
